@@ -47,35 +47,8 @@ public class PlaceDataAdapter extends ArrayAdapter<PlaceData> {
                 poiDetails += "Duration = " + place.getMovingDuration();
             TextView tvdetails = (TextView) convertView.findViewById( R.id.details );
             tvdetails.setText( poiDetails );
-        } else if (place.getType() == PlaceData.dataType.visit) {
-            convertView = LayoutInflater.from(getContext()).inflate( R.layout.item_visit, parent, false);
-            TextView tvCoord = (TextView) convertView.findViewById( R.id.coordinate );
-            tvCoord.setText( place.getLatitude() + "," + place.getLongitude() );
-
-            String endVisitInformation = "Visit is Ongoing";
-
-            if (place.getDuration() != 0) {
-                endVisitInformation = "End time = " + displayDateFormat.format(place.getDepartureDate()) + "\n" + "Duration = ";
-                long timeSec = place.getDuration() / 1000;
-                int hours = (int) timeSec / 3600;
-                if(hours != 0)
-                    endVisitInformation += String.format( "%02d", hours ) + " hours ";
-
-                int temp = (int) timeSec - hours * 3600;
-                int mins = temp / 60;
-                if(mins != 0)
-                    endVisitInformation += String.format( "%02d", mins ) + " mins ";
-
-                int secs = temp - mins * 60;
-                if(secs != 0)
-                    endVisitInformation += String.format( "%02d", secs ) + " secs";
-
-            }
-
-            String visitDetails = "Start time = " + displayDateFormat.format(place.getArrivalDate()) + "\n" + endVisitInformation;
-            TextView tvDetails = (TextView) convertView.findViewById( R.id.details );
-            tvDetails.setText( visitDetails );
-        } else if (place.getType() == PlaceData.dataType.regionLog) {
+        }
+        else if (place.getType() == PlaceData.dataType.regionLog) {
             convertView = LayoutInflater.from(getContext()).inflate( R.layout.item_region, parent, false);
             TextView tvCoord = (TextView) convertView.findViewById( R.id.coordinate );
             tvCoord.setText( String.format("%.5f", place.getLatitude()) + "," + String.format("%.5f", place.getLongitude()) );
