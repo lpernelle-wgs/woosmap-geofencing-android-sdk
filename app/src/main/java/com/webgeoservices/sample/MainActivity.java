@@ -155,11 +155,7 @@ public class MainActivity extends AppCompatActivity {
         // Instanciate woosmap object
         this.woosmap = Woosmap.getInstance().initializeWoosmap(this);
 
-        WoosmapSettings.trackingEnable = true;
-        WoosmapSettings.searchAPIEnable = false;
-        WoosmapSettings.distanceAPIEnable = false;
-        WoosmapSettings.modeHighFrequencyLocation = true;
-        WoosmapSettings.foregroundLocationServiceEnable = true;
+        this.woosmap.startTracking("liveTracking");
 
         // For android version >= 8 you have to create a channel or use the woosmap's channel
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
